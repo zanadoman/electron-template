@@ -2,6 +2,8 @@
 
 const { BrowserWindow, Menu, app } = require('electron');
 const path = require('path');
+const log = require('electron-log');
+const { updateElectronApp, UpdateSourceType } = require('update-electron-app');
 
 const createWindow = () => {
   const win = new BrowserWindow();
@@ -25,6 +27,12 @@ const createWindow = () => {
   }
 };
 
+if (require('electron-squirrel-startup')) {
+  app.quit();
+}
+
+log.initialize();
+
 app.whenReady().then(() => {
   createWindow();
 
@@ -32,6 +40,14 @@ app.whenReady().then(() => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow();
     }
+  });
+
+  updateElectronApp({
+    updateSource: {
+      type: UpdateSourceType.ElectronPublicUpdateService,
+      repo: 'zanadoman/electron-template'
+    },
+    logger: log
   });
 });
 
