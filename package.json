@@ -10,7 +10,7 @@
     "package": "electron-forge package",
     "make": "electron-forge make --arch=x64 --platform=win32",
     "publish": "electron-forge publish --arch=x64 --platform=win32",
-    "test": "ng test"
+    "test": "ng test --no-watch --no-progress --browsers=ChromeHeadless"
   },
   "author": "Jane Doe",
   "prettier": {
@@ -66,6 +66,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "puppeteer": "^24.22.0",
     "typescript": "~5.9.2",
     "wait-on": "^9.0.0"
   }
